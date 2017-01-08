@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> <%= title %></title>
+    <% include ../partials/head.ejs %>
+    <link rel="stylesheet" href="/stylesheets/registrationForm.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="col-lg-offset-4 col-lg-4  text-center panel panel-default">
+        <h1>Sign up to be the change</h1>
+        <form method="post" action="/user/register">
+            <p class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" name="registration[username]" class="form-control input-lg"
+                    placeholder="username" required value="mmkader85"/>
+            </p>
+            <p class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <input type="email" name="registration[email]" class="form-control input-lg"
+                    placeholder="email" required value="mmkader85@gmail.com"/>
+            </p>
+            <p class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                <input type="password" name="registration[password]" class="form-control input-lg"
+                    placeholder="password" required value="password"/>
+            </p>
+            <p class="margin-base-vertical-20">
+                <span>We hate spams too, so don't worry</span>
+            </p>
+            <p class="margin-base-vertical-20">
+                <button type="submit" class="btn btn-success btn-lg">Create Account</button>
+            </p>
+            <p class="margin-base-vertical-20">
+                Already registered? <a href="/user/login">Login</a>
+            </p>
+            <p class="margin-base-vertical-20">
+                <a href="/">Go back to homepage</a>
+            </p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

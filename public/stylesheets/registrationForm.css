@@ -1,0 +1,18 @@
+body {
+  padding-top: 40px;
+  font-size: 16px;
+  font-family: "Open Sans",serif;
+  background-color: #FFFACD !important;
+}
+h1 {
+  font-family: "Abel", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+}
+.margin-base-vertical {
+  margin: 40px 0;
+}
+
+.margin-base-vertical-20 {
+  margin: 20px 0;
+}
