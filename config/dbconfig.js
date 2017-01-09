@@ -2,13 +2,13 @@
  * Created by muhammed on 8/1/17.
  */
 
-var mongodb = {
-  dev: {
+var dbconfig = {
+  development: {
     host: 'localhost',
     port: 27017,
     database: 'leavethemarks'
   },
-  live: {
+  production: {
     user: '',
     password: '',
     host: 'localhost',
@@ -16,3 +16,5 @@ var mongodb = {
     database: 'leavethemarks'
   }
 }
+
+module.exports = dbconfig;
