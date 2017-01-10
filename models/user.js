@@ -5,27 +5,47 @@
 var express = require('express');
 var app = express();
 
-var dbconfig = require('../config/dbconfig');
+var config = require('../config/config');
 var MongoClient = require('mongodb').MongoClient;
 
-var config = '', connectUrl = '';
+var dbconfig = '', collections = config.collections, connectUrl = '';
 
 if (app.get('env') == 'development') {
-  config = dbconfig.development;
-  connectUrl = 'mongodb://' + config.host + ':' + config.port + '/' + config.database;
-} else if (app.get('env') == 'production') {
-  config = dbconfig.production;
-  connectUrl = 'mongodb://' + config.user + ':' + config.password + '@' +
-    config.host + ':' + config.port + '/' + config.database;
+  dbconfig = config.dbconfig.development;
+  connectUrl = 'mongodb://' + dbconfig.host + ':' + dbconfig.port + '/' + dbconfig.database;
 }
-
-MongoClient.connect(connectUrl, function (err, db) {
-  console.log('Connection Successful');
-});
+else if (app.get('env') == 'production') {
+  dbconfig = config.dbconfig.production;
+  connectUrl = 'mongodb://' + dbconfig.user + ':' + dbconfig.password + '@' +
+    dbconfig.host + ':' + dbconfig.port + '/' + dbconfig.database;
+}
 
 var user = {
   add: function (username, email, password) {
-    console.log('validate and store user : ' + username);
+    MongoClient.connect(connectUrl, function (err, db) {
+      if (err === null) {
+        console.log('Connection Successful');
+        var collection = db.collection(collections.users);
+        collection
+          .findOne({username:username})
+            .then(function(doc) {
+              console.log(doc);
+            });
+
+        var userData = {
+          username: username,
+          email: email,
+          password: password,
+          createdTime: +new Date()
+        };
+      }
+      else {
+        console.log('Connection Error');
+        console.log(err);
+        process.exit();
+      }
+      db.close();
+    });
   }
 };
 

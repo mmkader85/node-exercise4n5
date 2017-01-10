@@ -7,10 +7,9 @@ var user = require('../models/user');
 var app = express();
 
 var registerGet = function(req, res) {
-  console.log(validationErrors);
   res.render('user/register', {
     title: 'User Sign-up',
-    validationErrors: validationErrors,
+    validationErrors: {},
   });
 };
 
